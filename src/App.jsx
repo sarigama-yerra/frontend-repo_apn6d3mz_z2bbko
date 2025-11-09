@@ -1,28 +1,48 @@
-import { useState } from 'react'
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Achievements from "./components/Achievements";
+import Contact from "./components/Contact";
 
-function App() {
-  const [count, setCount] = useState(0)
+function Navbar() {
+  const links = [
+    { href: "#", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#achievements", label: "Achievements" },
+    { href: "#contact", label: "Contact" },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/60 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 text-white">
+        <a href="#" className="text-lg font-bold tracking-wider">
+          <span className="bg-gradient-to-r from-fuchsia-400 to-indigo-400 bg-clip-text text-transparent">RAZOR</span>
+        </a>
+        <nav className="hidden gap-6 sm:flex">
+          {links.map((l) => (
+            <a key={l.label} href={l.href} className="text-sm text-white/70 hover:text-white">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <a
+          href="#contact"
+          className="rounded-lg bg-white/10 px-3 py-2 text-xs font-medium text-white hover:bg-white/20"
+        >
+          Book me
+        </a>
       </div>
-    </div>
-  )
+    </header>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <div className="min-h-screen bg-black">
+      <Navbar />
+      <Hero />
+      <About />
+      <Achievements />
+      <Contact />
+    </div>
+  );
+}
